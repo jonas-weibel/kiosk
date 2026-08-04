@@ -59,6 +59,8 @@
     /* Text über dem Idle-Countdown */
     --countdown-size: 200px;
     /* Idle-Countdown-Zahl */
+    --error-text-size: 32px;
+    /* Fehlermeldung unterhalb des Videos */
 
     /* Buttons */
     --button-padding-y: 40px;
@@ -524,7 +526,7 @@ video {
 .error {
     padding: 16px;
 
-    font-size: var(--screen-title-size);
+    font-size: var(--error-text-size);
     border-radius: var(--card-radius);
 
     background: var(--error-bg-color);
