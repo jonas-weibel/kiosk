@@ -524,6 +524,7 @@ video {
 .error {
     padding: 16px;
 
+    font-size: var(--screen-title-size);
     border-radius: var(--card-radius);
 
     background: var(--error-bg-color);
