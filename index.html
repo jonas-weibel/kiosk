@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>733:02:35 – Videokiosk</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+  <main>
+
+    <!-- ==================================================
+         GALERIE
+         ================================================== -->
+
+    <section id="gallery" class="screen">
+      <header class="screen-header">
+        <div class="screen-heading">
+          <h1 id="gallery-title" class="screen-title">Eyewitness and Survivor Testimonies</h1>
+          <p id="gallery-subtitle" class="screen-subtitle">733:02:35</p>
+        </div>
+      </header>
+
+      <!-- Die Videokacheln werden per JavaScript eingefügt -->
+      <div id="grid" class="grid"></div>
+    </section>
+
+
+    <!-- ==================================================
+         VIDEOANZEIGE
+         ================================================== -->
+
+    <section id="player-screen" class="screen hidden">
+      <header class="screen-header">
+        <div class="screen-heading">
+          <h1 id="player-title" class="screen-title"></h1>
+          <p id="player-subtitle" class="screen-subtitle"></p>
+        </div>
+      </header>
+
+      <div class="video-wrap">
+        <video id="player" playsinline preload="metadata" disablepictureinpicture
+          controlslist="nofullscreen nodownload noremoteplayback noplaybackrate" tabindex="-1"></video>
+
+        <button id="idle-overlay" class="idle-overlay hidden" type="button">
+          <span class="idle-overlay-content">
+            <strong>
+              Bildschirm berühren, um Videos auszuwählen
+            </strong>
+            <br>
+            <span lang="en">
+              Touch screen to browse videos
+            </span>
+          </span>
+        </button>
+
+      </div>
+
+      <p id="error" class="error hidden"></p>
+    </section>
+
+
+    <!-- ==================================================
+         FEHLERANZEIGE
+         ================================================== -->
+
+    <section id="fatal" class="screen center hidden" aria-labelledby="fatal-title">
+      <div class="panel">
+        <h1 id="fatal-title">Fehler</h1>
+        <p id="fatal-text"></p>
+      </div>
+    </section>
+
+
+    <!-- ==================================================
+         AUTOPLAY-COUNTDOWN
+         ================================================== -->
+
+    <button id="idle-countdown-overlay" class="idle-countdown-overlay hidden" type="button"
+      aria-label="Automatische Wiedergabe abbrechen">
+      <span class="idle-countdown-box">
+        <span id="idle-countdown-label">
+          Automatische Wiedergabe in
+        </span>
+
+        <strong id="idle-countdown-text">3</strong>
+      </span>
+    </button>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>733:02:35 – Kiosk-Vorschau</title>
+
+  <style>
+    :root {
+      /*
+       * Virtuelle Auflösung des Kiosks in CSS-Pixeln.
+       */
+    --kiosk-width: 2160px;
+    --kiosk-height: 3840px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    #preview-stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    #kiosk-frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: var(--kiosk-width);
+      height: var(--kiosk-height);
+
+      border: 0;
+      background: #0b0b0b;
+
+      transform-origin: center center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="preview-stage">
+    <iframe
+      id="kiosk-frame"
+      src="./index.html"
+      title="Vorschau des Videokiosks"
+      allow="autoplay"
+    ></iframe>
+  </div>
+
+  <script>
+    "use strict";
+
+
+    const KIOSK_WIDTH = 2160;
+    const KIOSK_HEIGHT = 3840;
+    const PAGE_MARGIN = 24;
+
+    const frame = document.getElementById("kiosk-frame");
+
+    function resizePreview() {
+      const availableWidth =
+        window.innerWidth - PAGE_MARGIN * 2;
+
+      const availableHeight =
+        window.innerHeight - PAGE_MARGIN * 2;
+
+      const scale = Math.min(
+        availableWidth / KIOSK_WIDTH,
+        availableHeight / KIOSK_HEIGHT
+      );
+
+      frame.style.transform = `
+        translate(-50%, -50%)
+        scale(${scale})
+      `;
+    }
+
+    window.addEventListener("resize", resizePreview);
+
+    resizePreview();
+  </script>
+</body>
+
+</html>

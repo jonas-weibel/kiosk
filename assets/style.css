@@ -1,0 +1,593 @@
+/* =========================================================
+   733:02:35 VIDEOKIOSK
+   Zentrale Farben, Größen und Abstände
+   ========================================================= */
+
+:root {
+    /* Farben */
+    --bg-color: #12100d;
+    /* Hintergrundfarbe der Seite */
+    --card-bg-color: #222222;
+    /* Hintergrundfarbe von Kacheln */
+    --card-bg-light-color: #46423b;
+    /* Hintergrundfarbe für ausgewählte Kachel */
+    --title-text-color: #f4f1eb;
+    /* Textfarbe für Titel/Untertitel */
+    --card-text-color: #f4f1eb;
+    /* Textfarbe für Titel */
+    --line-color: rgba(255, 255, 255, 0.12);
+    /* Linienfarbe für Kacheln und Panels */
+    --active-bg-color: #333;
+    /* Hintergrundfarbe beim Antippen von Buttons und Kacheln */
+    --error-bg-color: #3b1717;
+    /* Hintergrundfarbe für Fehlermeldungen unterhalb des Videos */
+
+    /* Bildschirm */
+    --screen-padding: 36px;
+    /* Abstand zum Rand des Bildschirms */
+
+    /* Titel und Untertitel */
+    --header-gap: 36px;
+    /* Abstand zwischen Kopfzeile und Galerie/Video */
+    --header-text-gap: 0px;
+    /* Abstand zwischen Titel und Untertitel */
+
+    /* Galerie und Karten */
+    --grid-gap: 36px;
+    /* Abstand zwischen den Kacheln */
+    --gallery-scroll-space: 50vh;
+    /* Freiraum unter der letzten Kachel 100vh = 100% der verfügbaren Höhe */
+    --card-padding: 26px;
+    /* Abstand um den Text innerhalb der Kachel */
+    --card-text-gap: 0px;
+    /* Abstand zwischen Titel und Untertitel der Kachel */
+
+    /* Schriftgrößen */
+    --screen-title-size: 58px;
+    /* Haupttitel der Galerie und des Players */
+    --screen-subtitle-size: 58px;
+    /* Untertitel der Galerie und des Players */
+    --card-title-size: 48px;
+    /* Titel der Kachel */
+    --card-subtitle-size: 32px;
+    /* Untertitel der Kachel */
+    --overlay-title-size: 48px;
+    /* Deutscher Hinweis im Idle-Overlay*/
+    --overlay-text-size: 42px;
+    /* Englischer Hinweis im Idle-Overlay */
+    --countdown-label-size: 80px;
+    /* Text über dem Idle-Countdown */
+    --countdown-size: 200px;
+    /* Idle-Countdown-Zahl */
+
+    /* Buttons */
+    --button-padding-y: 40px;
+    /* Vertikaler Abstand innerhalb der Buttons */
+    --button-padding-x: 60px;
+    /* Horizontaler Abstand innerhalb der Buttons */
+
+    /* Countdown-Overlay */
+    --countdown-position-y: 690px;
+    /* Position des Countdowns von oben */
+    --countdown-text-gap: 12px;
+    /* Abstand zwischen Beschriftung und Zahl */
+
+    /* Idle-Overlay */
+    --overlay-gap: 6px;
+    /* Abstand zwischen deutschem und englischem Hinweistext */
+    --overlay-padding-y: 42px;
+    /* Vertikaler Innenabstand des Hinweis-Overlays */
+    --overlay-padding-x: 24px;
+    /* Horizontaler Innenabstand des Hinweis-Overlays */
+
+
+    /* Rundungen */
+    --card-radius: 18px;
+    /* Für Kacheln und Player */
+    --button-radius: 12px;
+    /* Für Buttons */
+    --panel-radius: 0px;
+    /* Für Panels, z. B. Fehlerbildschirm */
+
+    /* Video */
+    --video-reserved-height: 180px;
+    /* Platz für Idle-Overlay und Player-Titel, damit das Video nicht zu groß wird */
+
+    /* Animation */
+    --title-fade-duration: 1200ms;
+    /* Dauer der Ein- und Ausblendung des Video-Titels */
+    --overlay-fade-duration: 700ms;
+    /* Dauer des Einblendens */
+}
+
+
+/* =========================================================
+   GRUNDLAGEN
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+
+    background: var(--bg-color);
+    color: var(--title-text-color);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* Verhindert versehentliche Textauswahl am Touchscreen */
+    user-select: none;
+    -webkit-user-select: none;
+
+    /* Verhindert Scroll-Weitergabe an übergeordnete Bereiche */
+    overscroll-behavior: none;
+}
+
+/* Verhindert kleine Abstände unter Bildern und Videos */
+img,
+video {
+    display: block;
+}
+
+/* Wird per JavaScript zum Ein- und Ausblenden verwendet */
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   BILDSCHIRME UND HILFSKLASSEN
+   ========================================================= */
+
+.screen {
+    min-height: 100vh;
+    padding: var(--screen-padding);
+}
+
+/* Zentriert beispielsweise den Fehlerbildschirm */
+.center {
+    display: grid;
+    place-items: center;
+}
+
+
+/* =========================================================
+   KOPFZEILEN
+   Galerie und Player verwenden dieselbe Struktur.
+   ========================================================= */
+
+.screen-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 0 var(--header-gap);
+}
+
+/* Gruppiert Haupttitel und Untertitel */
+.screen-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--header-text-gap);
+
+    min-width: 0;
+
+    text-align: left;
+}
+
+/* Haupttitel der Galerie und des Players */
+.screen-title {
+    margin: 0;
+
+    color: var(--muted-color);
+
+    font-size: var(--screen-title-size);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.13em;
+
+    text-align: left;
+    text-transform: uppercase;
+}
+
+/* Untertitel beziehungsweise Video-Metadaten */
+.screen-subtitle {
+    margin: 0;
+
+    color: var(--muted-color);
+
+    font-size: var(--screen-subtitle-size);
+    line-height: 1.1;
+
+    text-align: left;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   GALERIE
+   Die Seite scrollt normal; das Grid hat keinen eigenen
+   Scrollbereich.
+   ========================================================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: var(--grid-gap);
+    padding-bottom: var(--gallery-scroll-space);
+}
+
+
+/* =========================================================
+   GALERIEKACHELN
+   Diese Elemente werden per JavaScript erzeugt.
+   ========================================================= */
+
+.card {
+    padding: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--line-color);
+    border-radius: var(--card-radius);
+
+    background: var(--card-bg-color);
+    color: var(--card-text-color);
+
+    text-align: left;
+
+    transition:
+        transform 120ms ease,
+        background-color 120ms ease;
+}
+
+/* Sichtbare Rückmeldung beim Antippen */
+.card:active {
+    transform: scale(0.95);
+    background: var(--card-bg-light-color);
+}
+
+/* Vorschaubild einer Kachel */
+.card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+
+    background: #222;
+}
+
+/* Textbereich unterhalb des Vorschaubildes */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-text-gap);
+
+    padding: var(--card-padding);
+
+    color: var(--card-text-color);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.card h2,
+.card p {
+    margin: 0;
+}
+
+/* Titel einer Kachel */
+.card h2 {
+    font-size: var(--card-title-size);
+    line-height: 1.15;
+}
+
+/* Zusatztext einer Kachel */
+.card p {
+    font-size: var(--card-subtitle-size);
+    line-height: 1.2;
+}
+
+::-webkit-scrollbar {
+    width: 24px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.30);
+    border: 4px solid var(--bg);
+    border-radius: 999px;
+}
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+/* Player füllt exakt den sichtbaren Bildschirm */
+#player-screen {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+/* Kopfzeile behält nur ihre tatsächlich benötigte Höhe */
+#player-screen .screen-header {
+    flex: 0 0 auto;
+}
+
+/* Video erhält den gesamten verbleibenden Platz */
+.video-wrap {
+    position: relative;
+
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid var(--line);
+    border-radius: var(--card-radius);
+
+    background: #000;
+}
+
+/* Video füllt den Wrapper vollständig */
+video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    background: #000;
+}
+
+/* Das Video selbst verarbeitet keine Touch-Eingaben */
+#player {
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   IDLE-OVERLAY ÜBER DEM VIDEO
+   ========================================================= */
+
+.idle-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    color: #ddd;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.33) 0%,
+            transparent 45%);
+
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.idle-overlay strong {
+    font-size: var(--overlay-title-size);
+    line-height: 1.2;
+}
+
+.idle-overlay span {
+    font-size: var(--overlay-text-size);
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   IDLE-COUNTDOWN
+   ========================================================= */
+
+.idle-countdown-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: var(--countdown-position-y);
+
+    background: rgba(0, 0, 0, 0.82);
+
+    pointer-events: auto;
+    /* Fängt alle Berührungen ab */
+    touch-action: manipulation;
+}
+
+.idle-countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--countdown-text-gap);
+
+    text-align: center;
+}
+
+#idle-countdown-label,
+#idle-countdown-text {
+    margin: 0;
+}
+
+#idle-countdown-label {
+    margin: 0 0 0.75rem;
+
+    color: #fff;
+
+    font-size: var(--countdown-label-size);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+#idle-countdown-text {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: var(--countdown-size);
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   TITEL-CROSSFADE
+   Die beiden Sprachversionen liegen übereinander.
+   ========================================================= */
+
+/* Crossfade für Galerie- und Player-Titel */
+.screen-title {
+    display: grid;
+    width: 100%;
+}
+
+.screen-title .title-layer {
+    grid-area: 1 / 1;
+
+    opacity: 0;
+
+    transition:
+        opacity var(--title-fade-duration) ease-in-out;
+}
+
+.screen-title .title-layer.is-visible {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   FEHLER- UND INFORMATIONSBEREICHE
+   ========================================================= */
+
+.panel {
+    width: min(760px, 100%);
+    padding: 64px;
+
+    border: 1px solid var(--line-color);
+    border-radius: var(--card-radius);
+
+    background:
+        linear-gradient(var(--card-bg-light-color),
+            var(--card-bg-color));
+
+    text-align: center;
+}
+
+/* Überschrift des Fehlerbildschirms */
+.panel h1 {
+    margin: 0 0 24px;
+
+    font-size: var(--screen-title-size);
+    line-height: 1.1;
+}
+
+/* Text des Fehlerbildschirms */
+#fatal-text {
+    margin: 0;
+}
+
+/* Fehler unterhalb des Videos */
+.error {
+    padding: 16px;
+
+    border-radius: var(--card-radius);
+
+    background: var(--error-bg-color);
+}
+
+.idle-overlay:not(.hidden),
+.idle-countdown-overlay:not(.hidden) {
+    animation:
+        overlay-fade-in var(--overlay-fade-duration) ease-out both;
+}
+
+@keyframes overlay-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.idle-overlay::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background: rgba(0, 0, 0, 0.68);
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.idle-overlay.is-centered::before {
+    opacity: 1;
+}
+
+.idle-overlay-content {
+    position: absolute;
+    z-index: 1;
+
+    top: var(--overlay-padding-y);
+    left: var(--overlay-padding-x);
+    right: var(--overlay-padding-x);
+
+    text-align: center;
+
+    transform:
+        translateY(0) scale(1);
+
+    transform-origin: center;
+
+    transition:
+        top 500ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.idle-overlay.is-centered .idle-overlay-content {
+    top: 30%;
+
+    transform:
+        translateY(-50%) scale(1.5);
+}
