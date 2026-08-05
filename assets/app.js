@@ -19,6 +19,18 @@ const state = {
 const $ = id => document.getElementById(id);
 const els = {};
 
+const MEDIA_PATHS = {
+  videoDirectory: "videos",
+  videoExtension: ".mp4",
+
+  thumbnailDirectory: "thumbnails",
+  thumbnailExtension: ".png",
+  placeholderThumbnail: "thumbnails/placeholder.svg",
+
+  subtitleDirectory: "subtitles",
+  subtitleExtension: ".vtt"
+};
+
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -178,7 +190,7 @@ function renderGallery() {
     card.className = "card";
 
     card.innerHTML = `
-      <img src="${video.thumbnail || "thumbnails/placeholder.svg"}" alt="">
+      <img src="${thumbnail(video)}" alt="">
       <div class="card-body">
         <h2>${localized(video.title)}</h2>
         <p>${video.meta ? localized(video.meta) : t.playVideo}</p>
@@ -262,7 +274,7 @@ function loadVideo(video, options = {}) {
   }
 
   els.player.play().catch(playError => {
-    console.error("Video konnte nicht automatisch gestartet werden:", playError);
+    console.error("Video ${videoSrc} konnte nicht automatisch gestartet werden:", playError);
     // Prüfen, ob es sich um die Autoplay-Sperre handelt
     if (playError.name === "NotAllowedError") {
       showError(
@@ -467,11 +479,13 @@ function localized(value) {
 }
 
 function source(video) {
-  return video.files?.[state.lang] || video.files?.de || video.files?.en || "";
-}
+  const name = String(video.id || "").trim();
 
-function subtitle(video) {
-  return video.subtitles?.[state.lang] || "";
+  if (!name) {
+    return "";
+  }
+
+  return `${MEDIA_PATHS.videoDirectory}/${name}${MEDIA_PATHS.videoExtension}`;
 }
 
 function shuffle(array) {
@@ -601,4 +615,24 @@ function clearErrorAdvanceTimer() {
     window.clearTimeout(state.errorAdvanceTimer);
     state.errorAdvanceTimer = null;
   }
+}
+
+function thumbnail(video) {
+  const name = String(video.id || "").trim();
+
+  if (!name) {
+    return MEDIA_PATHS.placeholderThumbnail;
+  }
+
+  return `${MEDIA_PATHS.thumbnailDirectory}/${name}${MEDIA_PATHS.thumbnailExtension}`;
+}
+
+function subtitle(video) {
+  const name = String(video.id || "").trim();
+
+  if (!name) {
+    return "";
+  }
+
+  return `${MEDIA_PATHS.subtitleDirectory}/${name}${MEDIA_PATHS.subtitleExtension}`;
 }

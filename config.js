@@ -17,11 +17,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-01.png",
-      "files": {
-        "de": "videos/oshrit-01.mp4",
-        "en": "videos/oshrit-01.mp4"
       }
     },
     {
@@ -33,11 +28,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-02.png",
-      "files": {
-        "de": "videos/oshrit-02.mp4",
-        "en": "videos/oshrit-02.mp4"
       }
     },
     {
@@ -49,11 +39,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-03.png",
-      "files": {
-        "de": "videos/oshrit-03.mp4",
-        "en": "videos/oshrit-03.mp4"
       }
     },
     {
@@ -65,11 +50,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-04.png",
-      "files": {
-        "de": "videos/oshrit-04.mp4",
-        "en": "videos/oshrit-04.mp4"
       }
     },
     {
@@ -81,11 +61,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-01.png",
-      "files": {
-        "de": "videos/oshrit-05.mp4",
-        "en": "videos/oshrit-05.mp4"
       }
     },
     {
@@ -97,11 +72,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-06.png",
-      "files": {
-        "de": "videos/oshrit-06.mp4",
-        "en": "videos/oshrit-06.mp4"
       }
     },
     {
@@ -113,11 +83,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-07.png",
-      "files": {
-        "de": "videos/oshrit-07.mp4",
-        "en": "videos/oshrit-07.mp4"
       }
     },
     {
@@ -129,11 +94,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-08.png",
-      "files": {
-        "de": "videos/oshrit-08.mp4",
-        "en": "videos/oshrit-08.mp4"
       }
     },
     {
@@ -145,11 +105,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-09.png",
-      "files": {
-        "de": "videos/oshrit-09.mp4",
-        "en": "videos/oshrit-09.mp4"
       }
     },
     {
@@ -161,11 +116,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-10.png",
-      "files": {
-        "de": "videos/oshrit-10.mp4",
-        "en": "videos/oshrit-10.mp4"
       }
     },
     {
@@ -177,11 +127,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-11.png",
-      "files": {
-        "de": "videos/oshrit-11.mp4",
-        "en": "videos/oshrit-11.mp4"
       }
     },
     {
@@ -193,11 +138,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-12.png",
-      "files": {
-        "de": "videos/oshrit-12.mp4",
-        "en": "videos/oshrit-12.mp4"
       }
     },
     {
@@ -209,11 +149,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-13.png",
-      "files": {
-        "de": "videos/oshrit-13.mp4",
-        "en": "videos/oshrit-13.mp4"
       }
     },
     {
@@ -225,11 +160,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Oshrit Salbag, Nahal Oz",
         "en": "Oshrit Salbag, Nahal Oz"
-      },
-      "thumbnail": "thumbnails/oshrit-14.png",
-      "files": {
-        "de": "videos/oshrit-14.mp4",
-        "en": "videos/oshrit-14.mp4"
       }
     },
     {
@@ -241,11 +171,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-01.png",
-      "files": {
-        "de": "videos/zohar-01.mp4",
-        "en": "videos/zohar-01.mp4"
       }
     },
     {
@@ -257,11 +182,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-02.png",
-      "files": {
-        "de": "videos/zohar-02.mp4",
-        "en": "videos/zohar-02.mp4"
       }
     },
     {
@@ -273,11 +193,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-03.png",
-      "files": {
-        "de": "videos/zohar-03.mp4",
-        "en": "videos/zohar-03.mp4"
       }
     },
     {
@@ -289,11 +204,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-04.png",
-      "files": {
-        "de": "videos/zohar-04.mp4",
-        "en": "videos/zohar-04.mp4"
       }
     },
     {
@@ -305,11 +215,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-05.png",
-      "files": {
-        "de": "videos/zohar-05.mp4",
-        "en": "videos/zohar-05.mp4"
       }
     },
     {
@@ -321,11 +226,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-06.png",
-      "files": {
-        "de": "videos/zohar-06.mp4",
-        "en": "videos/zohar-06.mp4"
       }
     },
     {
@@ -337,11 +237,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-07.png",
-      "files": {
-        "de": "videos/zohar-07.mp4",
-        "en": "videos/zohar-07.mp4"
       }
     },
     {
@@ -353,11 +248,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-08.png",
-      "files": {
-        "de": "videos/zohar-08.mp4",
-        "en": "videos/zohar-08.mp4"
       }
     },
     {
@@ -369,11 +259,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-09.png",
-      "files": {
-        "de": "videos/zohar-09.mp4",
-        "en": "videos/zohar-09.mp4"
       }
     },
     {
@@ -385,11 +270,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-10.png",
-      "files": {
-        "de": "videos/zohar-10.mp4",
-        "en": "videos/zohar-10.mp4"
       }
     },
     {
@@ -401,11 +281,6 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
-      },
-      "thumbnail": "thumbnails/zohar-11.png",
-      "files": {
-        "de": "videos/zohar-11.mp4",
-        "en": "videos/zohar-11.mp4"
       }
     },
   ]
