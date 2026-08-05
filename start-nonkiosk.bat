@@ -13,7 +13,6 @@ set "CHROME64=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
 if exist "%CHROME64%" (
   start "" "%CHROME64%" ^
     --user-data-dir="%CHROME_PROFILE%" ^
-    --kiosk ^
     --no-first-run ^
     --no-default-browser-check ^
     --disable-pinch ^
@@ -27,7 +26,6 @@ set "CHROME32=%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"
 if exist "%CHROME32%" (
   start "" "%CHROME32%" ^
     --user-data-dir="%CHROME_PROFILE%" ^
-    --kiosk ^
     --no-first-run ^
     --no-default-browser-check ^
     --disable-pinch ^
@@ -41,7 +39,6 @@ set "EDGE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
 if exist "%EDGE%" (
   start "" "%EDGE%" ^
     --user-data-dir="%EDGE_PROFILE%" ^
-    --kiosk ^
     --edge-kiosk-type=fullscreen ^
     --no-first-run ^
     --no-default-browser-check ^
@@ -56,7 +53,6 @@ set "EDGE64=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
 if exist "%EDGE64%" (
   start "" "%EDGE64%" ^
     --user-data-dir="%EDGE_PROFILE%" ^
-    --kiosk ^
     --edge-kiosk-type=fullscreen ^
     --no-first-run ^
     --no-default-browser-check ^

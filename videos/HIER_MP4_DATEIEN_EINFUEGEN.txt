@@ -1,1 +1,0 @@
-MP4-Dateien hier ablegen und Pfade in config.js anpassen.

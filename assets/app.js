@@ -22,12 +22,7 @@ const els = {};
 const MEDIA_PATHS = {
   videoDirectory: "videos",
   videoExtension: ".mp4",
-
-  thumbnailDirectory: "thumbnails",
   thumbnailExtension: ".png",
-  placeholderThumbnail: "thumbnails/placeholder.svg",
-
-  subtitleDirectory: "subtitles",
   subtitleExtension: ".vtt"
 };
 
@@ -77,6 +72,11 @@ function cacheElements() {
     playerScreen: $("player-screen"),
     playerTitle: $("player-title"),
     playerSubtitle: $("player-subtitle"),
+
+    subtitleOverlay: $("subtitle-overlay"),
+    subtitleDe: $("subtitle-de"),
+    subtitleEn: $("subtitle-en"),
+
     idleOverlay: $("idle-overlay"),
     idleCountdownOverlay: $("idle-countdown-overlay"),
     idleCountdownLabel: $("idle-countdown-label"),
@@ -230,6 +230,8 @@ function loadVideo(video, options = {}) {
   clearIdle();
   clearPlayerIdleTimer();
   stopTitleAlternation();
+  clearSubtitleOverlay();
+
 
   els.player.pause();
   els.player.removeAttribute("src");
@@ -238,16 +240,8 @@ function loadVideo(video, options = {}) {
 
   els.player.src = source(video);
 
-  const sub = subtitle(video);
-  if (sub) {
-    const track = document.createElement("track");
-    track.kind = "subtitles";
-    track.srclang = state.lang;
-    track.label = state.lang === "en" ? "English" : "Deutsch";
-    track.src = sub;
-    track.default = true;
-    els.player.appendChild(track);
-  }
+  addSubtitleTrack(video, "de");
+  addSubtitleTrack(video, "en");
 
   const videoSrc = source(video)?.trim();
 
@@ -289,6 +283,7 @@ function loadVideo(video, options = {}) {
 }
 
 function showGallery() {
+  clearSubtitleOverlay();
   stopTitleAlternation();
   state.idle = false;
 
@@ -446,6 +441,7 @@ function clearIdle() {
 function stop() {
   clearIdle();
   stopTitleAlternation();
+  clearSubtitleOverlay();
 
   els.player.pause();
   els.player.removeAttribute("src");
@@ -485,7 +481,7 @@ function source(video) {
     return "";
   }
 
-  return `${MEDIA_PATHS.videoDirectory}/${name}${MEDIA_PATHS.videoExtension}`;
+  return `${MEDIA_PATHS.videoDirectory}/${name}/${name}${MEDIA_PATHS.videoExtension}`;
 }
 
 function shuffle(array) {
@@ -618,21 +614,134 @@ function clearErrorAdvanceTimer() {
 }
 
 function thumbnail(video) {
-  const name = String(video.id || "").trim();
+  const id = String(video.id || "").trim();
 
-  if (!name) {
-    return MEDIA_PATHS.placeholderThumbnail;
-  }
-
-  return `${MEDIA_PATHS.thumbnailDirectory}/${name}${MEDIA_PATHS.thumbnailExtension}`;
+  return `${MEDIA_PATHS.videoDirectory}/${id}/${id}${MEDIA_PATHS.thumbnailExtension}`;
 }
 
-function subtitle(video) {
-  const name = String(video.id || "").trim();
+function subtitle(video, language) {
+  const id = String(video.id || "").trim();
 
-  if (!name) {
+  if (!id) {
     return "";
   }
 
-  return `${MEDIA_PATHS.subtitleDirectory}/${name}${MEDIA_PATHS.subtitleExtension}`;
+  const lang = language === "en" ? "en" : "de";
+
+  return `${MEDIA_PATHS.videoDirectory}/${id}/${id}-${lang}${MEDIA_PATHS.subtitleExtension}`;
+}
+
+/**
+ * Lädt eine VTT-Untertiteldatei für die angegebene Sprache
+ * und verbindet sie mit der benutzerdefinierten Anzeige.
+ */
+function addSubtitleTrack(video, language) {
+  const subtitleSrc = subtitle(video, language);
+
+  const absoluteSubtitleUrl = new URL(
+    subtitleSrc,
+    window.location.href
+  ).href;
+
+  console.log(
+    `Untertitel ${language}:`,
+    absoluteSubtitleUrl
+  );
+
+  if (!subtitleSrc) {
+    return;
+  }
+
+  const trackElement = document.createElement("track");
+
+  trackElement.kind = "subtitles";
+  trackElement.srclang = language;
+  trackElement.label = language === "en" ? "English" : "Deutsch";
+  trackElement.src = subtitleSrc;
+  trackElement.default = false;
+
+  els.player.appendChild(trackElement);
+
+  const textTrack = trackElement.track;
+
+  /*
+   * hidden bedeutet:
+   * Der Browser verarbeitet die Untertitel zeitlich,
+   * zeigt sie aber nicht mit seiner eigenen Darstellung an.
+   */
+  textTrack.mode = "hidden";
+
+  /**
+   * Überträgt den aktuell aktiven VTT-Text
+   * in die passende eigene Untertitelzeile.
+   */
+  const updateTrackText = () => {
+    const target =
+      language === "en"
+        ? els.subtitleEn
+        : els.subtitleDe;
+
+    target.textContent = getActiveCueText(textTrack);
+    updateSubtitleOverlayVisibility();
+  };
+
+  textTrack.addEventListener("cuechange", updateTrackText);
+
+  trackElement.addEventListener("load", () => {
+    textTrack.mode = "hidden";
+    updateTrackText();
+  });
+
+  trackElement.addEventListener("error", () => {
+    console.error(
+      `Untertiteldatei konnte nicht geladen werden: ${subtitleSrc}`
+    );
+
+    const target =
+      language === "en"
+        ? els.subtitleEn
+        : els.subtitleDe;
+
+    target.textContent = "";
+    updateSubtitleOverlayVisibility();
+  });
+}
+
+/**
+ * Ermittelt den Text aller momentan aktiven Untertitel
+ * einer VTT-Textspur.
+ */
+function getActiveCueText(textTrack) {
+  if (!textTrack || !textTrack.activeCues) {
+    return "";
+  }
+
+  return Array.from(textTrack.activeCues)
+    .map(cue => String(cue.text || "").replace(/<[^>]+>/g, ""))
+    .join("\n")
+    .trim();
+}
+
+/**
+ * Blendet das Untertitel-Overlay nur ein,
+ * wenn mindestens eine Sprache Text enthält.
+ */
+function updateSubtitleOverlayVisibility() {
+  const hasGermanText = els.subtitleDe.textContent.trim() !== "";
+  const hasEnglishText = els.subtitleEn.textContent.trim() !== "";
+
+  els.subtitleOverlay.classList.toggle(
+    "hidden",
+    !hasGermanText && !hasEnglishText
+  );
+}
+
+/**
+ * Entfernt alle aktuell angezeigten Untertitel
+ * und blendet das Overlay aus.
+ */
+function clearSubtitleOverlay() {
+  els.subtitleDe.textContent = "";
+  els.subtitleEn.textContent = "";
+  els.subtitleOverlay.classList.add("hidden");
 }

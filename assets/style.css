@@ -100,6 +100,17 @@
     /* Dauer der Ein- und Ausblendung des Video-Titels */
     --overlay-fade-duration: 700ms;
     /* Dauer des Einblendens */
+
+
+    /*Video-Untertitel*/
+    --subtitle-de-size: 96px;
+    /* Deutsche Untertitel */
+    --subtitle-en-size: 66px;
+    /* Englische Übersetzung unter dem deutschen Text */
+    --subtitle-gap: 66px;
+    /* Abstand zwischen deutscher und englischer Zeile */
+    --subtitle-outline-size: 3px;
+    /* Stärke der schwarzen Buchstabenkontur */
 }
 
 
@@ -523,7 +534,8 @@ video {
 }
 
 /* Fehler unterhalb des Videos */
-.error {
+.subtitle-error,
+.video-error {
     padding: 16px;
 
     font-size: var(--error-text-size);
@@ -593,4 +605,79 @@ video {
 
     transform:
         translateY(-50%) scale(1.5);
+}
+
+/* =========================================================
+   ZWEISPRACHIGE VIDEO-UNTERTITEL
+   Deutsch wird größer, Englisch etwas kleiner dargestellt.
+   ========================================================= */
+
+.subtitle-overlay {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 30%;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--subtitle-gap);
+
+    color: var(--title-text-color);
+    font-family: inherit;
+    text-align: center;
+
+    pointer-events: none;
+}
+
+/* Gemeinsame Gestaltung beider Untertitelsprachen */
+.subtitle-line {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.05em 0.15em;
+
+    /* Keine geschlossene Hintergrundfläche.
+     * Das Bild bleibt hinter dem Text sichtbar. */
+    background: transparent;
+
+    color: rgb(255, 255, 255);
+
+    /* Zusätzlicher Schatten verbessert die Lesbarkeit,
+     * insbesondere auf bewegten und unruhigen Hintergründen. */
+    text-shadow:
+        -3px -3px 4px rgba(0, 0, 0, 0.95),
+         3px -3px 4px rgba(0, 0, 0, 0.95),
+        -3px  3px 4px rgba(0, 0, 0, 0.95),
+         3px  3px 4px rgba(0, 0, 0, 0.95),
+         0     5px 12px rgba(0, 0, 0, 0.9);
+    
+
+    /* Zeilenumbrüche aus der VTT-Datei werden übernommen. */
+    white-space: pre-line;
+
+    /* Anders als die Überschriften nicht in Großbuchstaben,
+     * da längere Untertitel sonst schwerer lesbar wären. */
+    text-transform: none;
+    letter-spacing: 0.015em;
+}
+
+/* Leere Sprachzeilen nehmen keinen Platz ein */
+.subtitle-line:empty {
+    display: none;
+}
+
+/* Größerer deutscher Hauptuntertitel */
+.subtitle-de {
+    font-size: var(--subtitle-de-size);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+/* Kleinere englische Übersetzung darunter */
+.subtitle-en {
+    font-size: var(--subtitle-en-size);
+    font-weight: 400;
+    line-height: 1.18;
 }
