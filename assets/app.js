@@ -86,8 +86,22 @@ function bindEvents() {
   els.player.addEventListener("error", () => {
     showError();
 
-    /* Im Fehlerfall nach 1.5 Sekunden aufs nächste Video wechseln */
-      window.setTimeout(playNextIdle, 1500);
+    // Verhindert mehrere gleichzeitig laufende Fehler-Timeouts.
+    clearErrorAdvanceTimer();
+
+    /* Im Fehlerfall nach 1,5 Sekunden zum nächsten Video wechseln.
+    * Die Timer-ID wird gespeichert, damit der Wechsel abgebrochen
+    * werden kann, falls der Benutzer vorher zur Galerie zurückkehrt.  */
+    state.errorAdvanceTimer = window.setTimeout(() => {
+      state.errorAdvanceTimer = null;
+
+      /* Zusätzliche Sicherheitsprüfung: Nur weiterschalten, solange Player noch angezeigt wird. */
+      if (els.playerScreen.classList.contains("hidden")) {
+        return;
+      }
+
+      playNextIdle();
+    }, 1500);
   });
 
   els.idleOverlay.addEventListener("click", event => {
@@ -256,7 +270,7 @@ function loadVideo(video, options = {}) {
       );
     } else {
       showError(
-        `Das Video konnte nicht gestartet werden: ${playError?.message || playError?.name}`
+        `Das Video ${videoSrc} konnte nicht gestartet werden: "${playError?.message || playError?.name}"`
       );
     }
   });
@@ -580,4 +594,11 @@ function stopTitleAlternation() {
   }
 
   state.titleVisibleLayer = 0;
+}
+
+function clearErrorAdvanceTimer() {
+  if (state.errorAdvanceTimer !== null) {
+    window.clearTimeout(state.errorAdvanceTimer);
+    state.errorAdvanceTimer = null;
+  }
 }
