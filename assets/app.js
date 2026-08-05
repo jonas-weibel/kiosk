@@ -86,9 +86,8 @@ function bindEvents() {
   els.player.addEventListener("error", () => {
     showError();
 
-    if (state.idle) {
+    /* Im Fehlerfall nach 1.5 Sekunden aufs nächste Video wechseln */
       window.setTimeout(playNextIdle, 1500);
-    }
   });
 
   els.idleOverlay.addEventListener("click", event => {
