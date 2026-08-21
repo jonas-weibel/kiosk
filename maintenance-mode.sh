@@ -12,7 +12,10 @@ pkill -x swaybg 2>/dev/null || true
 sleep 1
 
 # Normalen Desktop wiederherstellen
-/usr/bin/pcmanfm --desktop --profile LXDE-pi >/dev/null 2>&1 &
+/usr/bin/pcmanfm --desktop >/dev/null 2>&1 &
+
 
 # Panel wiederherstellen
 /usr/bin/wf-panel-pi >/dev/null 2>&1 &
+
+# Destkop 
