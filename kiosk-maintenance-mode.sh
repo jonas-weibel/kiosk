@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-START_SCRIPT="$SCRIPT_DIR/start-kiosk.sh"
+START_SCRIPT="$SCRIPT_DIR/kiosk-start.sh"
 
 # ---------------------------------------------------------
 # Nur eine Instanz dieses Skripts gleichzeitig erlauben
