@@ -1,46 +1,14 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd /home/kiosk/videokiosk || exit 1
 
-cd "$SCRIPT_DIR" || exit 1
+echo "Kiosk wird auf den aktuellen Stand von github.com/jonas-weibel/kiosk aktualisiert..."
+echo
 
-PROFILE="$HOME/.config/733-videokiosk-chromium"
+git fetch origin
+git reset --hard origin/main
 
-# ---------------------------------------------------------
-# Kiosk-Oberfläche vorbereiten
-# ---------------------------------------------------------
-
-# Desktop-Icons und Desktop-Menü deaktivieren.
-pcmanfm --desktop-off 2>/dev/null || true
-
-# Raspberry-Pi-Panel ausblenden.
-pkill -x wf-panel-pi 2>/dev/null || true
-
-# Schwarzen Hintergrund anzeigen.
-pkill -x swaybg 2>/dev/null || true
-swaybg -c '#000000' >/dev/null 2>&1 &
-
-# ---------------------------------------------------------
-# Chromium-Kiosk
-# ---------------------------------------------------------
-
-while true
-do
-    /usr/bin/chromium \
-        --user-data-dir="$PROFILE" \
-        --kiosk \
-        --no-first-run \
-        --no-default-browser-check \
-        --noerrdialogs \
-        --disable-session-crashed-bubble \
-        --disable-pinch \
-        --disable-translate \
-        --disable-features=Translate,TranslateUI \
-        --password-store=basic \
-        --autoplay-policy=no-user-gesture-required \
-        --allow-file-access-from-files \
-        --overscroll-history-navigation=0 \
-        "$APP"
-
-    sleep 2
-done
+echo
+echo "Aktueller Stand:"
+git log -1 --format="%h  %cd  %s" --date=format:"%d.%m.%Y %H:%M"
+read -p "Enter zum Schließen..."
