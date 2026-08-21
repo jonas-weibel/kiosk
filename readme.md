@@ -1,25 +1,23 @@
 # Videokiosk – Offline-Version
 
-Diese Version benötigt weder Python noch einen Webserver, lediglich ein Webbrowser (Firefox, Chrome, Edge) muss installiert sein.
+Diese Version des Videokiosks läuft vollständig lokal und benötigt keinen Webserver.
 
-## Start
+Alle Videos, Vorschaubilder, Untertitel, Schriftarten und sonstigen Dateien werden direkt aus dem Projektordner geladen.
 
+Für den Betrieb wird lediglich ein kompatibler Webbrowser benötigt. Unter Windows verwenden die mitgelieferten Startskripte bevorzugt Google Chrome. Unter Raspberry Pi / Linux wird Chromium verwendet.
+
+## Projektstruktur
+1. Video-IDs und Metainformationen in `config.js` anpassen
+2. Videos (.mp4), Untertitel (-de.srt / -en.srt) und Vorschaubilder (.png) in `/videos` ablegen.
+
+# Start unter Linux / Raspberry Pi
+- Kiosk-Testmodus: `start-preview.sh` starten
+- Kiosk-Vollbild: `start-kiosk.sh` starten
+
+Für Autostart-Konfiguration des Raspberry Pi, siehe separate Readme-Datei
+
+# Start unter Windows
 - Kiosk-Testmodus: `start-preview.bat` starten
 - Kiosk-Vollbild: `start-kiosk.bat` starten
 
-## Inhalte ändern
-
-1. Videos (.mp4), Untertitel (-de.srt / -en.srt) und Vorschaubilder (.png) in `/videos` ablegen.
-2. Titel und Dateipfade in `config.js` anpassen
-
-## Autostart unter Windows
-
-1. `Win + R`
-2. `shell:startup`
-3. Verknüpfung zu `start-kiosk.bat` dort ablegen
-
-Im BIOS/UEFI zusätzlich `Power On after AC Loss` oder eine ähnlich benannte Option aktivieren.
-
-## Autostart unter Linux
-
-Wird noch ergänzt...
+Für Autostart die bat-Datei in den Autostart-Ordner legen und automatische Anmeldung & restart after power loss aktivieren.
