@@ -20,14 +20,14 @@ pkill -x swaybg 2>/dev/null || true
 
 while pgrep -f "733-videokiosk-chromium" >/dev/null \
    || pgrep -x swaybg >/dev/null; do
-    sleep 0.1
+    sleep 0.05
 done
 
 # Normalen Desktop wiederherstellen
 pcmanfm --desktop-off 2>/dev/null || true
 
 while pgrep -x pcmanfm >/dev/null; do
-    sleep 0.1
+    sleep 0.05
 done
 
 /usr/bin/pcmanfm --desktop >/dev/null 2>&1 &
@@ -37,7 +37,7 @@ done
 pkill -x wf-panel-pi 2>/dev/null || true
 
 while pgrep -x wf-panel-pi >/dev/null; do
-    sleep 0.1
+    sleep 0.05
 done
 
 /usr/bin/wf-panel-pi >/dev/null 2>&1 &
