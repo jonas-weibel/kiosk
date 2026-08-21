@@ -15,7 +15,7 @@ flock -n 9 || exit 0
 # Wenn der Kiosk bereits beendet ist: nichts mehr tun
 # ---------------------------------------------------------
 
-if ! pgrep -f "/home/kiosk/videokiosk/start-kiosk.sh" >/dev/null \
+if ! pgrep -f "/home/kiosk/videokiosk/kiosk-start.sh" >/dev/null \
    && ! pgrep -f "733-videokiosk-chromium" >/dev/null; then
     exit 0
 fi

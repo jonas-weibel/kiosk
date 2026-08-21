@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-APP="file://$(realpath "$SCRIPT_DIR/../Web Application/preview.html")"
+APP="file://$(realpath "$SCRIPT_DIR/app/preview.html")"
 
 PROFILE="$HOME/.config/733-videokiosk-preview"
 
