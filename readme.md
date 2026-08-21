@@ -1,29 +1,16 @@
 # Videokiosk – Offline-Version
 
-Diese Version benötigt weder Python noch einen Webserver.
+Diese Version benötigt weder Python noch einen Webserver, lediglich ein Webbrowser (Firefox, Chrome, Edge) muss installiert sein.
 
 ## Start
 
-- Test: `index.html` doppelklicken
+- Kiosk-Testmodus: `start-preview.bat` starten
 - Kiosk-Vollbild: `start-kiosk.bat` starten
 
 ## Inhalte ändern
 
-1. MP4-Dateien nach `videos`
-2. Vorschaubilder nach `thumbnails`
-4. Titel und Dateipfade in `config.js` anpassen
-
-Bei eingebrannten Untertiteln einfach:
-
-```js
-subtitles: {}
-```
-
-## Idle-Modus
-
-`idleTimeoutSeconds` legt fest, nach wie vielen Sekunden die automatische Wiedergabe startet.
-Die Videos werden pro Durchlauf zufällig gemischt und jeweils einmal abgespielt.
-Eine Berührung beendet den Idle-Modus.
+1. Videos (.mp4), Untertitel (-de.srt / -en.srt) und Vorschaubilder (.png) in `/videos` ablegen.
+2. Titel und Dateipfade in `config.js` anpassen
 
 ## Autostart unter Windows
 
@@ -32,3 +19,7 @@ Eine Berührung beendet den Idle-Modus.
 3. Verknüpfung zu `start-kiosk.bat` dort ablegen
 
 Im BIOS/UEFI zusätzlich `Power On after AC Loss` oder eine ähnlich benannte Option aktivieren.
+
+## Autostart unter Linux
+
+Wird noch ergänzt...

@@ -113,7 +113,7 @@ function bindEvents() {
       }
 
       playNextIdle();
-    }, 1500);
+    }, 3500);
   });
 
   els.idleOverlay.addEventListener("click", event => {
@@ -201,6 +201,7 @@ function renderGallery() {
     els.grid.appendChild(card);
   });
 
+  renderHomeWatchNotice();
 }
 
 function play(video, idleMode = false) {
@@ -245,9 +246,7 @@ function loadVideo(video, options = {}) {
 
   const videoSrc = source(video)?.trim();
 
-  console.log("Zu ladende Datei:", {
-    videoSrc,
-  });
+  console.log("Zu ladende Datei:", { videoSrc });
 
   startPlayerTitleAlternation(video);
 
@@ -475,13 +474,13 @@ function localized(value) {
 }
 
 function source(video) {
-  const name = String(video.id || "").trim();
+  const id = String(video.id || "").trim();
 
-  if (!name) {
+  if (!id) {
     return "";
   }
 
-  return `${MEDIA_PATHS.videoDirectory}/${name}/${name}${MEDIA_PATHS.videoExtension}`;
+  return `${MEDIA_PATHS.videoDirectory}/${id}${MEDIA_PATHS.videoExtension}`;
 }
 
 function shuffle(array) {
@@ -615,8 +614,9 @@ function clearErrorAdvanceTimer() {
 
 function thumbnail(video) {
   const id = String(video.id || "").trim();
+  const thumbnailId = id.replace(/-\d+$/, "");
 
-  return `${MEDIA_PATHS.videoDirectory}/${id}/${id}${MEDIA_PATHS.thumbnailExtension}`;
+  return `${MEDIA_PATHS.videoDirectory}/${thumbnailId}${MEDIA_PATHS.thumbnailExtension}`;
 }
 
 function subtitle(video, language) {
@@ -628,7 +628,7 @@ function subtitle(video, language) {
 
   const lang = language === "en" ? "en" : "de";
 
-  return `${MEDIA_PATHS.videoDirectory}/${id}/${id}-${lang}${MEDIA_PATHS.subtitleExtension}`;
+  return `${MEDIA_PATHS.videoDirectory}/${id}-${lang}${MEDIA_PATHS.subtitleExtension}`;
 }
 
 /**
@@ -637,16 +637,7 @@ function subtitle(video, language) {
  */
 function addSubtitleTrack(video, language) {
   const subtitleSrc = subtitle(video, language);
-
-  const absoluteSubtitleUrl = new URL(
-    subtitleSrc,
-    window.location.href
-  ).href;
-
-  console.log(
-    `Untertitel ${language}:`,
-    absoluteSubtitleUrl
-  );
+  console.log("Zu ladende Datei:", { subtitleSrc });
 
   if (!subtitleSrc) {
     return;
@@ -744,4 +735,47 @@ function clearSubtitleOverlay() {
   els.subtitleDe.textContent = "";
   els.subtitleEn.textContent = "";
   els.subtitleOverlay.classList.add("hidden");
+}
+
+
+
+function renderHomeWatchNotice() {
+
+  const homeWatch = state.config.homeWatch;
+
+  if (!homeWatch?.qr || !homeWatch?.text) {
+    return;
+  }
+
+  const notice = document.createElement("div");
+  notice.className = "gallery-home-watch";
+
+  const qr = document.createElement("img");
+  qr.className = "gallery-home-watch-qr";
+  qr.src = homeWatch.qr;
+  qr.alt = "QR-Code";
+
+  const url = document.createElement("p");
+  url.className = "gallery-home-watch-url";
+  url.textContent = "733ausstellung.de/begleitheft/";
+
+  const text = document.createElement("div");
+  text.className = "gallery-home-watch-text";
+
+  const de = document.createElement("p");
+  de.lang = "de";
+  de.textContent = homeWatch.text.de || "";
+
+  const en = document.createElement("p");
+  en.lang = "en";
+  en.textContent = homeWatch.text.en || "";
+
+  text.appendChild(de);
+  text.appendChild(en);
+
+  notice.appendChild(qr);
+  notice.appendChild(url);
+  notice.appendChild(text);
+
+  els.grid.appendChild(notice);
 }

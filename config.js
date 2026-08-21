@@ -1,11 +1,18 @@
 window.KIOSK_CONFIG = {
   "idleTimeoutSeconds": 10,
-  "idleTimeoutSecondsPlayer": 10,
+  "idleTimeoutSecondsPlayer": 1,
   "idleCountdownSeconds": 5,
   "idleOverlayConfirmSeconds": 3,
   "galleryTitle": {
     "de": "Interviews mit Augenzeugen und Überlebenden",
     "en": "Eyewitness and Survivor Testimonies"
+  },
+  "homeWatch": {
+    "qr": "assets/qrcode_begleitheft.png",
+    "text": {
+      "de": "Zu wenig Zeit? Alle Videos auch zu Hause ansehen.",
+      "en": "Short on time? Watch all videos at home."
+    }
   },
   "videos": [
     {
@@ -281,6 +288,61 @@ window.KIOSK_CONFIG = {
       "meta": {
         "de": "Zohar Shpak, Kfar Aza",
         "en": "Zohar Shpak, Kfar Aza"
+      }
+    },
+    {
+      "id": "efrat-01",
+      "title": {
+        "de": "Dummy Text de",
+        "en": "Dummy Text eng"
+      },
+      "meta": {
+        "de": "Efrat Machikawa, Nahal Oz",
+        "en": "Efrat Machikawa, Nahal Oz"
+      }
+    },
+    {
+      "id": "gitit-01",
+      "title": {
+        "de": "Dummy Text de",
+        "en": "Dummy Text eng"
+      },
+      "meta": {
+        "de": "Gitit Botera, Sderot",
+        "en": "Gitit Botera, Sderot"
+      }
+    },
+    {
+      "id": "natan-01",
+      "title": {
+        "de": "Dummy Text de",
+        "en": "Dummy Text eng"
+      },
+      "meta": {
+        "de": "Natan Karpinovski, Tel Aviv",
+        "en": "Natan Karpinovski, Tel Aviv"
+      }
+    },
+    {
+      "id": "alexander-01",
+      "title": {
+        "de": "Dummy Text de",
+        "en": "Dummy Text eng"
+      },
+      "meta": {
+        "de": "Alexander Levckovich, Tel Aviv",
+        "en": "Alexander Levckovich, Tel Aviv"
+      }
+    },
+    {
+      "id": "security-01",
+      "title": {
+        "de": "Dummy Text de",
+        "en": "Dummy Text eng"
+      },
+      "meta": {
+        "de": "Security, Sderot",
+        "en": "Security, Sderot"
       }
     },
   ]
