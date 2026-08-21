@@ -480,7 +480,7 @@ function source(video) {
     return "";
   }
 
-  return `${MEDIA_PATHS.videoDirectory}/${id}${MEDIA_PATHS.videoExtension}`;
+  return getVideoSrc(id);
 }
 
 function shuffle(array) {
@@ -778,4 +778,15 @@ function renderHomeWatchNotice() {
   notice.appendChild(text);
 
   els.grid.appendChild(notice);
+}
+
+
+const isGitHubPages = window.location.hostname.endsWith("github.io");
+
+function getVideoSrc(videoName) {
+  if (isGitHubPages) {
+    return "preview-videos/preview.mp4";
+  }
+
+  return `videos/${videoName}.mp4`;
 }
