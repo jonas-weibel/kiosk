@@ -5,17 +5,25 @@
 # ---------------------------------------------------------
 
 exec 9>/tmp/733-maintenance.lock
-
 flock -n 9 || exit 0
 
 
-# Kiosk-Neustartschleife stoppen
+# ---------------------------------------------------------
+# Wenn der Kiosk bereits beendet ist: nichts mehr tun
+# ---------------------------------------------------------
+
+if ! pgrep -f "/home/kiosk/videokiosk/start-kiosk.sh" >/dev/null \
+   && ! pgrep -f "733-videokiosk-chromium" >/dev/null; then
+    exit 0
+fi
+
+
+# ---------------------------------------------------------
+# Kiosk beenden
+# ---------------------------------------------------------
+
 pkill -f "/home/kiosk/videokiosk/start-kiosk.sh" 2>/dev/null || true
-
-# Kiosk-Chromium beenden
 pkill -f "733-videokiosk-chromium" 2>/dev/null || true
-
-# Schwarzen Hintergrund entfernen
 pkill -x swaybg 2>/dev/null || true
 
 while pgrep -f "733-videokiosk-chromium" >/dev/null \
@@ -23,21 +31,27 @@ while pgrep -f "733-videokiosk-chromium" >/dev/null \
     sleep 0.05
 done
 
-# Normalen Desktop wiederherstellen
+
+# ---------------------------------------------------------
+# Desktop wiederherstellen
+# ---------------------------------------------------------
+
 pcmanfm --desktop-off 2>/dev/null || true
 
-while pgrep -x pcmanfm >/dev/null; do
-    sleep 0.05
-done
-
-/usr/bin/pcmanfm --desktop >/dev/null 2>&1 &
+/usr/bin/pcmanfm \
+    --desktop \
+    >/dev/null 2>&1 9>&- &
 
 
+# ---------------------------------------------------------
 # Panel wiederherstellen
+# ---------------------------------------------------------
+
 pkill -x wf-panel-pi 2>/dev/null || true
 
 while pgrep -x wf-panel-pi >/dev/null; do
     sleep 0.05
 done
 
-/usr/bin/wf-panel-pi >/dev/null 2>&1 &
+/usr/bin/wf-panel-pi \
+    >/dev/null 2>&1 9>&- &
