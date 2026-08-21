@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+START_SCRIPT="$SCRIPT_DIR/start-kiosk.sh"
+
 # ---------------------------------------------------------
 # Nur eine Instanz dieses Skripts gleichzeitig erlauben
 # ---------------------------------------------------------
@@ -22,7 +25,7 @@ fi
 # Kiosk beenden
 # ---------------------------------------------------------
 
-pkill -f "/home/kiosk/videokiosk/start-kiosk.sh" 2>/dev/null || true
+pkill -f "$START_SCRIPT" 2>/dev/null || true
 pkill -f "733-videokiosk-chromium" 2>/dev/null || true
 pkill -x swaybg 2>/dev/null || true
 

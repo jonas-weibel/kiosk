@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+APP="file://$(realpath "$SCRIPT_DIR/../Web Application/index.html")"
 
-cd "$(dirname "$0")" || exit 1
-
-APP="file://$(realpath index.html)"
 PROFILE="$HOME/.config/733-videokiosk-chromium"
 
 # ---------------------------------------------------------
