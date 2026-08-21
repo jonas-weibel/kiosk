@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# ---------------------------------------------------------
+# Nur eine Instanz dieses Skripts gleichzeitig erlauben
+# ---------------------------------------------------------
+
+exec 9>/tmp/733-maintenance.lock
+
+flock -n 9 || exit 0
+
+
 # Kiosk-Neustartschleife stoppen
 pkill -f "/home/kiosk/videokiosk/start-kiosk.sh" 2>/dev/null || true
 
