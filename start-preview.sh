@@ -11,6 +11,10 @@ exec /usr/bin/chromium \
     --no-first-run \
     --no-default-browser-check \
     --disable-pinch \
+    --disable-translate \
+    --disable-features=Translate,TranslateUI \
+    --password-store=basic \
     --autoplay-policy=no-user-gesture-required \
     --allow-file-access-from-files \
+    --overscroll-history-navigation=0 \
     "$APP"

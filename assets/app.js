@@ -197,7 +197,10 @@ function renderGallery() {
       </div>
     `;
 
-    card.addEventListener("click", () => play(video, false));
+    card.addEventListener("click", () => {
+      logVideoClick(video);
+      play(video, false);
+    });
     els.grid.appendChild(card);
   });
 
@@ -789,4 +792,21 @@ function getVideoSrc(videoName) {
   }
 
   return `videos/${videoName}.mp4`;
+}
+
+
+/*Logging funktion für statistische Zwecke */
+function logVideo(video) {
+  fetch("/log", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      video_id: video.id,
+      language: state.lang
+    })
+  }).catch(error => {
+    console.error("Nutzungsstatistik konnte nicht gespeichert werden:", error);
+  });
 }
