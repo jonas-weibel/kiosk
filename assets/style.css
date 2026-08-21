@@ -134,8 +134,11 @@
 
 html,
 body {
-    /*nur scrollen erlauben */
     touch-action: pan-y;
+    overscroll-behavior: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 html {
@@ -154,6 +157,7 @@ body {
 
     /* Verhindert versehentliche Textauswahl am Touchscreen */
     user-select: none;
+    -webkit-user-select: none;
     -webkit-user-select: none;
 
     /* Verhindert Scroll-Weitergabe an übergeordnete Bereiche */
