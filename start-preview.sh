@@ -7,7 +7,6 @@ PROFILE="$HOME/.config/733-videokiosk-preview"
 
 exec /usr/bin/chromium \
     --user-data-dir="$PROFILE" \
-    --start-fullscreen \
     --no-first-run \
     --no-default-browser-check \
     --disable-pinch \
