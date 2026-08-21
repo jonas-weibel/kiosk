@@ -271,7 +271,7 @@ function loadVideo(video, options = {}) {
     // Prüfen, ob es sich um die Autoplay-Sperre handelt
     if (playError.name === "NotAllowedError") {
       showError(
-        "Autoplay gesperrt (autoplay-policy). Starte die Anwendung über die Batch-Datei."
+        "Autoplay gesperrt (autoplay-policy). Starte die Anwendung über die Batch-Datei (Windows) / ."
       );
     } else {
       showError(
