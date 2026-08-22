@@ -35,6 +35,7 @@ do
         --disable-pinch \
         --disable-translate \
         --disable-features=Translate,TranslateUI \
+        --force-dark-mode \
         --password-store=basic \
         --autoplay-policy=no-user-gesture-required \
         --allow-file-access-from-files \
