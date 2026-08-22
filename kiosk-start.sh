@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-APP="file://$(realpath "$SCRIPT_DIR/../Web Application/index.html")"
+APP="file://$(realpath "$SCRIPT_DIR/app/index.html")"
 
 PROFILE="$HOME/.config/733-videokiosk-chromium"
 
