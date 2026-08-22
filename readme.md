@@ -1,23 +1,28 @@
-# Videokiosk – Offline-Version
-
-Diese Version des Videokiosks läuft vollständig lokal und benötigt keinen Webserver.
-
-Alle Videos, Vorschaubilder, Untertitel, Schriftarten und sonstigen Dateien werden direkt aus dem Projektordner geladen.
-
-Für den Betrieb wird lediglich ein kompatibler Webbrowser benötigt. Unter Windows verwenden die mitgelieferten Startskripte bevorzugt Google Chrome. Unter Raspberry Pi / Linux wird Chromium verwendet.
+# Videokiosk – Offline-Version / Raspberry Pi 
+Diese Version des Videokiosks läuft vollständig lokal auf einem Raspberry Pi / Linux mit Chromium. Alle Videos, Vorschaubilder, Untertitel, Schriftarten und sonstigen Dateien werden direkt aus dem Projektordner geladen.
 
 ## Projektstruktur
-1. Video-IDs und Metainformationen in `config.js` anpassen
-2. Videos (.mp4), Untertitel (-de.srt / -en.srt) und Vorschaubilder (.png) in `/videos` ablegen.
+1. Video-IDs und Metainformationen in 'app/config.js' pflegen
+    a. Video-ID sollte aus Person + fortlaufender Nummer bestehen, z.b. 'oshrit-01', 'oshrit-02', etc
+    b. Meta-Informationen werden unter dem Videotitel angezeigt, typischerweise Interviewpartner und -Ort / Datum
+2. Dateien unter  'app/videos/ ablegen 
+    a. Videos:          [video-id].mp4,             Beispiel: oshrit-01.mp4
+    b. Untertitel:      [video-id]-[de/en].srt      Beispiel: oshrit-01-de.srt
+    c. Vorschaubilder   [person].png                Beispiel: oshrit.png
+       Vorschaubilder werden nur pro Person abgelegt und automatisch auf alle zugehörigen Videos angewendet.
 
-# Start unter Linux / Raspberry Pi
-- Kiosk-Testmodus: `start-preview.sh` starten
-- Kiosk-Vollbild: `start-kiosk.sh` starten
 
-Für Autostart-Konfiguration des Raspberry Pi, siehe separate Readme-Datei
+# Wartung/Zugriff
+## Kiosk-Modus beenden (Variante 1):
+Desktop aufrufen	    -> 	Strg + Alt + K
 
-# Start unter Windows
-- Kiosk-Testmodus: `start-preview.bat` starten
-- Kiosk-Vollbild: `start-kiosk.bat` starten
+## Kiosk-Modus beenden (Variante 2):
+Terminal aufrufen	    -> 	Strg + Alt + T
+Restart-Loop stoppen	->	pkill -f start-kiosk.sh
+Chromium stoppen	    ->	pkill chromium
 
-Für Autostart die bat-Datei in den Autostart-Ordner legen und automatische Anmeldung & restart after power loss aktivieren.
+## Fernzugriff:
+Sofern der Raspberry Pi mit dem Internet verbunden ist, kann über connect.raspberrypi.com auf die Oberfläche zugegriffen werden.
+
+## Dateiübertragung
+Möglich über kostenlose Dienstleister wie z.B. wormhole.app
