@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Admin-Authentifizierung erforderlich
-if ! pkexec /usr/bin/true; then
+if ! pkexec /usr/local/sbin/kiosk-auth; then
     exit 1
 fi
 
