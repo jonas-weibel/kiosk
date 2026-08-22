@@ -297,8 +297,8 @@ window.KIOSK_CONFIG = {
         "en": "Dummy Text eng"
       },
       "meta": {
-        "de": "Efrat Machikawa, Nahal Oz",
-        "en": "Efrat Machikawa, Nahal Oz"
+        "de": "Efrat Machikawa, Nir Oz",
+        "en": "Efrat Machikawa, Nir Oz"
       }
     },
     {
