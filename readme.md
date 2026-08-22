@@ -1,18 +1,8 @@
 # Videokiosk – Offline-Version / Raspberry Pi 
 Diese Version des Videokiosks läuft vollständig lokal auf einem Raspberry Pi / Linux mit Chromium. Alle Videos, Vorschaubilder, Untertitel, Schriftarten und sonstigen Dateien werden direkt aus dem Projektordner geladen.
 
-## Projektstruktur
-1. Video-IDs und Metainformationen in 'app/config.js' pflegen
-    a. Video-ID sollte aus Person + fortlaufender Nummer bestehen, z.b. 'oshrit-01', 'oshrit-02', etc
-    b. Meta-Informationen werden unter dem Videotitel angezeigt, typischerweise Interviewpartner und -Ort / Datum
-2. Dateien unter  'app/videos/ ablegen 
-    a. Videos:          [video-id].mp4,             Beispiel: oshrit-01.mp4
-    b. Untertitel:      [video-id]-[de/en].srt      Beispiel: oshrit-01-de.srt
-    c. Vorschaubilder   [person].png                Beispiel: oshrit.png
-       Vorschaubilder werden nur pro Person abgelegt und automatisch auf alle zugehörigen Videos angewendet.
-
-
 # Wartung/Zugriff
+
 ## Kiosk-Modus beenden (Variante 1):
 Desktop aufrufen	    -> 	Strg + Alt + K
 
@@ -26,3 +16,11 @@ Sofern der Raspberry Pi mit dem Internet verbunden ist, kann über connect.raspb
 
 ## Dateiübertragung
 Möglich über kostenlose Dienstleister wie z.B. wormhole.app
+
+# Projektstruktur
+1. Video-IDs und Metainformationen in 'app/config.js' pflegen. Die Video-ID sollte aus [Person][fortlaufende Nummer] bestehen, z.b. 'oshrit-01', 'oshrit-02', etc.
+    
+2. Dateien unter  'app/videos/ ablegen 
+    a. Videos:          [video-id].mp4,             Beispiel: oshrit-01.mp4
+    b. Untertitel:      [video-id]-[de/en].srt      Beispiel: oshrit-01-de.srt
+    c. Vorschaubild   [person].png                  Beispiel: oshrit.png
