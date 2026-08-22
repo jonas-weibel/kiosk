@@ -12,10 +12,10 @@ Desktop aufrufen	    -> 	`Strg + Alt + K`
 - Chromium stoppen	    ->	`pkill chromium`
 
 ### Fernzugriff:
-Sofern der Raspberry Pi mit dem Internet verbunden ist, kann über [Raspberry Pi Connect(https://connect.raspberrypi.com)] auf die Oberfläche zugegriffen werden.
+Sofern der Raspberry Pi mit dem Internet verbunden ist, kann über [Raspberry Pi Connect](https://connect.raspberrypi.com) auf die Oberfläche zugegriffen werden.
 
 ### Dateiübertragung
-Möglich über kostenlose Dienstleister wie z.B. [Wormhole(https://wormhole.app)] wormhole.app
+Möglich über kostenlose Dienstleister wie z.B. [Wormhole](https://wormhole.app) wormhole.app
 
 ## Projektstruktur
 1. Video-IDs und Metainformationen in `app/config.js` pflegen. 
