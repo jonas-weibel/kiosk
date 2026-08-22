@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Admin-Authentifizierung erforderlich
+if ! pkexec /usr/bin/true; then
+    exit 1
+fi
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 START_SCRIPT="$SCRIPT_DIR/kiosk-start.sh"
 
